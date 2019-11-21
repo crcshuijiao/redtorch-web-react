@@ -41,9 +41,8 @@ class TradeOrderStore {
         this.hasBeenChanged = true
     }
 
-
     @action
-    public storeOrderList(orderList: any[]) {
+    public clearAndStoreOrderList(orderList: any[]) {
         if (isDevEnv) {
             console.debug(orderList)
         }
@@ -57,6 +56,22 @@ class TradeOrderStore {
             newOrderMap.set(order.orderId, order)
         }
         this.orderMap = newOrderMap;
+        this.hasBeenChanged = true
+    }
+
+    @action
+    public storeOrderList(orderList: any[]) {
+        if (isDevEnv) {
+            console.debug(orderList)
+        }
+        const orderListLength = orderList.length
+        for (let i = 0; i < orderListLength; i++) {
+            const order = orderList[i]
+            if (order.contract) {
+                tradeContractStore.storeContract(order.contract)
+            }
+            this.orderMap.set(order.orderId, order);
+        }
         this.hasBeenChanged = true
     }
 

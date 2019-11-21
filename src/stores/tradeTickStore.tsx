@@ -65,7 +65,7 @@ class TradeTickStore {
     }
 
     @action
-    public storeTickList(tickList: any[]) {
+    public clearAndStoreTickList(tickList: any[]) {
         if (isDevEnv) {
             console.debug(tickList)
         }
@@ -79,6 +79,26 @@ class TradeTickStore {
             newMixTickMap.set(tick.contract.unifiedSymbol, tick)
         }
         this.mixTickMap = newMixTickMap
+        this.hasBeenChanged = true
+    }
+
+    @action
+    public storeTickList(tickList: any[]) {
+        if (isDevEnv) {
+            console.debug(tickList)
+        }
+        const tickListLength = tickList.length
+        for (let i = 0; i < tickListLength; i++) {
+            const tick = tickList[i]
+            if (tick.contract) {
+                tradeContractStore.storeContract(tick.contract)
+    
+                if (tick.contract.unifiedSymbol) {
+                    this.mixTickMap.set(tick.contract.unifiedSymbol, tick);
+                    this.hasBeenChanged = true
+                }
+            }
+        }
         this.hasBeenChanged = true
     }
 

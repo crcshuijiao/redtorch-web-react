@@ -30,7 +30,13 @@ const {
     RpcAccountRtn,
     RpcTickRtn,
     RpcContractRtn,
-    RpcNoticeRtn
+    RpcNoticeRtn,
+    RpcOrderListRtn,
+    RpcTradeListRtn,
+    RpcPositionListRtn,
+    RpcAccountListRtn,
+    RpcTickListRtn,
+    RpcContractListRtn
 } = xyz.redtorch.pb
 
 class RpcClientProcess {
@@ -375,6 +381,78 @@ class RpcClientProcess {
                     rpcClientRtnHandler.onTickRtn(rpcTickRtn)
                 } catch (error) {
                     console.error(`处理RPC异常,来源节点ID:${sourceNodeId},RPC:TICK_RTN`, error);
+                    this.sendExceptionRsp(sourceNodeId, rpcId, reqId, timestamp, error.message);
+                }
+                break;
+            }
+            case RpcId.ORDER_LIST_RTN: {
+                try {
+                    const rpcOrderListRtn = RpcOrderListRtn.decode(contentBytes);
+                    this.checkCommonRtn(rpcOrderListRtn.commonRtn, sourceNodeId);
+                    console.log(`处理RPC记录,来源节点ID:${sourceNodeId},请求ID:${reqId},RPC:ORDER_LIST_RTN`);
+                    rpcClientRtnHandler.onOrderListRtn(rpcOrderListRtn)
+                } catch (error) {
+                    console.error(`处理RPC异常,来源节点ID:${sourceNodeId},RPC:ORDER_LIST_RTN`, error);
+                    this.sendExceptionRsp(sourceNodeId, rpcId, reqId, timestamp, error.message);
+                }
+                break;
+            }
+            case RpcId.TRADE_LIST_RTN: {
+                try {
+                    const rpcTradeListRtn = RpcTradeListRtn.decode(contentBytes);
+                    this.checkCommonRtn(rpcTradeListRtn.commonRtn, sourceNodeId);
+                    console.log(`处理RPC记录,来源节点ID:${sourceNodeId},请求ID:${reqId},RPC:TRADE_LIST_RTN`);
+                    rpcClientRtnHandler.onTradeListRtn(rpcTradeListRtn)
+                } catch (error) {
+                    console.error(`处理RPC异常,来源节点ID:${sourceNodeId},RPC:TRADE_LIST_RTN`, error);
+                    this.sendExceptionRsp(sourceNodeId, rpcId, reqId, timestamp, error.message);
+                }
+                break;
+            }
+            case RpcId.POSITION_LIST_RTN: {
+                try {
+                    const rpcPositionListRtn = RpcPositionListRtn.decode(contentBytes);
+                    this.checkCommonRtn(rpcPositionListRtn.commonRtn, sourceNodeId);
+                    console.log(`处理RPC记录,来源节点ID:${sourceNodeId},请求ID:${reqId},RPC:POSITION_LIST_RTN`);
+                    rpcClientRtnHandler.onPositionListRtn(rpcPositionListRtn)
+                } catch (error) {
+                    console.error(`处理RPC异常,来源节点ID:${sourceNodeId},RPC:POSITION_LIST_RTN`, error);
+                    this.sendExceptionRsp(sourceNodeId, rpcId, reqId, timestamp, error.message);
+                }
+                break;
+            }
+            case RpcId.ACCOUNT_LIST_RTN: {
+                try {
+                    const rpcAccountListRtn = RpcAccountListRtn.decode(contentBytes);
+                    this.checkCommonRtn(rpcAccountListRtn.commonRtn, sourceNodeId);
+                    console.log(`处理RPC记录,来源节点ID:${sourceNodeId},请求ID:${reqId},RPC:ACCOUNT_LIST_RTN`);
+                    rpcClientRtnHandler.onAccountListRtn(rpcAccountListRtn)
+                } catch (error) {
+                    console.error(`处理RPC异常,来源节点ID:${sourceNodeId},RPC:ACCOUNT_LIST_RTN`, error);
+                    this.sendExceptionRsp(sourceNodeId, rpcId, reqId, timestamp, error.message);
+                }
+                break;
+            }
+            case RpcId.CONTRACT_LIST_RTN: {
+                try {
+                    const rpcContractListRtn = RpcContractListRtn.decode(contentBytes);
+                    this.checkCommonRtn(rpcContractListRtn.commonRtn, sourceNodeId);
+                    console.log(`处理RPC记录,来源节点ID:${sourceNodeId},请求ID:${reqId},RPC:CONTRACT_LIST_RTN`);
+                    rpcClientRtnHandler.onContractListRtn(rpcContractListRtn)
+                } catch (error) {
+                    console.error(`处理RPC异常,来源节点ID:${sourceNodeId},RPC:CONTRACT_LIST_RTN`, error);
+                    this.sendExceptionRsp(sourceNodeId, rpcId, reqId, timestamp, error.message);
+                }
+                break;
+            }
+            case RpcId.TICK_LIST_RTN: {
+                try {
+                    const rpcTickListRtn = RpcTickListRtn.decode(contentBytes);
+                    this.checkCommonRtn(rpcTickListRtn.commonRtn, sourceNodeId);
+                    console.log(`处理RPC记录,来源节点ID:${sourceNodeId},请求ID:${reqId},RPC:TICK_LIST_RTN`);
+                    rpcClientRtnHandler.onTickListRtn(rpcTickListRtn)
+                } catch (error) {
+                    console.error(`处理RPC异常,来源节点ID:${sourceNodeId},RPC:TICK_LIST_RTN`, error);
                     this.sendExceptionRsp(sourceNodeId, rpcId, reqId, timestamp, error.message);
                 }
                 break;

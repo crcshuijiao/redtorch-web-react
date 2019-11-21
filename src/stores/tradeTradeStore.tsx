@@ -40,10 +40,8 @@ class TradeTradeStore {
         this.tradeMap.set(trade.tradeId, trade);
         this.hasBeenChanged = true
     }
-
-
     @action
-    public storeTradeList(tradeList: any[]) {
+    public clearAndStoreTradeList(tradeList: any[]) {
         if (isDevEnv) {
             console.debug(tradeList)
         }
@@ -57,6 +55,22 @@ class TradeTradeStore {
             newTradeMap.set(trade.tradeId, trade)
         }
         this.tradeMap = newTradeMap
+        this.hasBeenChanged = true
+    }
+
+    @action
+    public storeTradeList(tradeList: any[]) {
+        if (isDevEnv) {
+            console.debug(tradeList)
+        }
+        const tradeListLength = tradeList.length
+        for (let i = 0; i < tradeListLength; i++) {
+            const trade = tradeList[i]
+            if (trade.contract) {
+                tradeContractStore.storeContract(trade.contract)
+            }
+            this.tradeMap.set(trade.tradeId, trade);
+        }
         this.hasBeenChanged = true
     }
 

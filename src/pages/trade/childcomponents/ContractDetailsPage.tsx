@@ -74,8 +74,6 @@ export class ContractDetailsPage extends React.Component<any> {
 
                 flag = flag && (this.state.filterSymbol === "" || !this.state.filterSymbol || (contract.symbol && `${contract.symbol}`.indexOf(this.state.filterSymbol) !== -1))
 
-                flag = flag && (this.state.filterSymbol === "" || !this.state.filterSymbol || (contract.symbol && `${contract.symbol}`.indexOf(this.state.filterSymbol) !== -1))
-
                 flag = flag && (this.state.filterLastTradeDateOrContractMonth === "" || !this.state.filterLastTradeDateOrContractMonth || (contract.lastTradeDateOrContractMonth && `${contract.lastTradeDateOrContractMonth}`.indexOf(this.state.filterLastTradeDateOrContractMonth) !== -1))
 
                 flag = flag && (this.state.filterUnderlyingSymbol === "" || !this.state.filterUnderlyingSymbol || (contract.underlyingSymbol && `${contract.underlyingSymbol}`.indexOf(this.state.filterUnderlyingSymbol) !== -1))

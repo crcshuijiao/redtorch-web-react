@@ -24,6 +24,7 @@ class TradeActionStore {
     @observable timeConditionType: string = "GTC"
 
     @action setSelectedContract(selectedContract: any) {
+
         if (isDevEnv) {
             console.debug(selectedContract)
         }

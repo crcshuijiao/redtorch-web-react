@@ -63,6 +63,48 @@ class RpcClientRtnHandler {
 
     }
 
+    public onOrderListRtn(rpcOrderListRtn: xyz.redtorch.pb.IRpcOrderListRtn) {
+        if (rpcOrderListRtn.order) {
+            tradeOrderStore.storeOrderList(rpcOrderListRtn.order)
+        }
+    }
+
+
+    public onTradeListRtn(rpcTradeListRtn: xyz.redtorch.pb.IRpcTradeListRtn) {
+        if (rpcTradeListRtn.trade) {
+            tradeTradeStore.storeTradeList(rpcTradeListRtn.trade)
+        }
+    }
+
+
+    public onContractListRtn(rpcContractListRtn: xyz.redtorch.pb.IRpcContractListRtn) {
+        if (rpcContractListRtn.contract) {
+            tradeContractStore.storeContractList(rpcContractListRtn.contract)
+        }
+    }
+
+
+    public onPositionListRtn(rpcPositionListRtn: xyz.redtorch.pb.IRpcPositionListRtn) {
+        if (rpcPositionListRtn.position) {
+            tradePositionStore.storePositionList(rpcPositionListRtn.position)
+        }
+    }
+
+
+    public onAccountListRtn(rpcAccountListRtn: xyz.redtorch.pb.IRpcAccountListRtn) {
+        if (rpcAccountListRtn.account) {
+            tradeAccountStore.storeAccountList(rpcAccountListRtn.account)
+        }
+    }
+
+
+    public onTickListRtn(rpcTickListRtn: xyz.redtorch.pb.RpcTickListRtn) {
+        if (rpcTickListRtn.tick) {
+            tradeTickStore.storeTick(rpcTickListRtn.tick)
+        }
+
+    }
+
     public onNoticeRtn(rpcNoticeRtn: xyz.redtorch.pb.RpcNoticeRtn) {
         // 检查notice,以免编译器报错
         if (rpcNoticeRtn.notice) {

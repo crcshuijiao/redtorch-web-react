@@ -61,9 +61,8 @@ class TradeAccountStore {
         this.hasBeenChanged = true
     }
 
-
     @action
-    public storeAccountList(accountList: any[]) {
+    public clearAndStoreAccountList(accountList: any[]) {
         if (isDevEnv) {
             console.debug(accountList)
         }
@@ -74,6 +73,19 @@ class TradeAccountStore {
             newAccountMap.set(account.accountId, account)
         }
         this.accountMap = newAccountMap
+        this.hasBeenChanged = true
+    }
+
+    @action
+    public storeAccountList(accountList: any[]) {
+        if (isDevEnv) {
+            console.debug(accountList)
+        }
+        const accountListLength = accountList.length
+        for (let i = 0; i < accountListLength; i++) {
+            const account = accountList[i]
+            this.accountMap.set(account.accountId, account);
+        }
         this.hasBeenChanged = true
     }
 

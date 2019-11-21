@@ -54,7 +54,7 @@ class TradePositionStore {
     }
 
     @action
-    public storePositionList(positionList: any[]) {
+    public clearAndStorePositionList(positionList: any[]) {
         if (isDevEnv) {
             console.debug(positionList)
         }
@@ -71,6 +71,22 @@ class TradePositionStore {
         this.hasBeenChanged = true
     }
 
+    @action
+    public storePositionList(positionList: any[]) {
+        if (isDevEnv) {
+            console.debug(positionList)
+        }
+        const positionListLength = positionList.length
+        for (let i = 0; i < positionListLength; i++) {
+            const position = positionList[i]
+            if (position.contract) {
+                tradeContractStore.storeContract(position.contract)
+            }
+            this.positionMap.set(position.positionId, position);
+        }
+        this.hasBeenChanged = true
+    }
+    
     @action coverMapToList() {
         const tempPositionList = [...this.positionMap.values()]
         this.positionList = this.sortPositionListByAccountIdAndPositionId(tempPositionList);

@@ -38,7 +38,7 @@ class TradeContractStore {
     }
 
     @action
-    public storeContractList(mixContractList: any[]) {
+    public clearAndStoreContractList(mixContractList: any[]) {
         if (isDevEnv) {
             console.debug(mixContractList)
         }
@@ -49,6 +49,19 @@ class TradeContractStore {
             newMixContractMap.set(contract.unifiedSymbol, contract)
         }
         this.mxiContractMap = newMixContractMap
+        this.hasBeenChanged = true
+    }
+
+    @action
+    public storeContractList(mixContractList: any[]) {
+        if (isDevEnv) {
+            console.debug(mixContractList)
+        }
+        const mixContractListLength = mixContractList.length
+        for (let i = 0; i < mixContractListLength; i++) {
+            const contract = mixContractList[i]
+            this.mxiContractMap.set(contract.unifiedSymbol, contract);
+        }
         this.hasBeenChanged = true
     }
 

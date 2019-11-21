@@ -169,7 +169,7 @@ class RpcClientRspHandler {
                 }
                 const accountListlength = rpcGetAccountListRsp.account.length
                 console.log(`获取账户列表完成,请求ID:${rpcReqId},共计${accountListlength}条数据`);
-                tradeAccountStore.storeAccountList(rpcGetAccountListRsp.account);
+                tradeAccountStore.clearAndStoreAccountList(rpcGetAccountListRsp.account);
             } else {
                 console.error(`获取账户列表完成,请求ID:${rpcReqId},未知的请求状态`);
                 toast(`获取账户列表完成,请求ID:${rpcReqId},未知的请求状态`, { type: "error", autoClose: false })
@@ -209,7 +209,7 @@ class RpcClientRspHandler {
                 //         objects: true
                 //     }))
                 // }
-                tradeContractStore.storeContractList(rpcGetMixContractListRsp.contract);
+                tradeContractStore.clearAndStoreContractList(rpcGetMixContractListRsp.contract);
             } else {
                 console.error(`获取混合合约列表完成,请求ID:${rpcReqId},未知的请求状态`);
                 toast(`获取混合合约列表完成,请求ID:${rpcReqId},未知的请求状态`, { type: "error", autoClose: false });
@@ -239,7 +239,7 @@ class RpcClientRspHandler {
                 }
                 const positionListLength = rpcGetPositionListRsp.position.length
                 console.log(`获取持仓列表完成,请求ID:${rpcReqId},共计${positionListLength}条数据`);
-                tradePositionStore.storePositionList(rpcGetPositionListRsp.position);
+                tradePositionStore.clearAndStorePositionList(rpcGetPositionListRsp.position);
             } else {
                 console.error(`获取持仓列表完成,请求ID:${rpcReqId},未知的请求状态`);
                 toast(`获取持仓列表完成,请求ID:${rpcReqId},未知的请求状态`, { type: "error", autoClose: false });
@@ -268,7 +268,7 @@ class RpcClientRspHandler {
                 }
                 const orderListLength = rpcGetOrderListRsp.order.length
                 console.log(`获取委托列表完成,请求ID:${rpcReqId},共计${orderListLength}条数据`);
-                tradeOrderStore.storeOrderList(rpcGetOrderListRsp.order);
+                tradeOrderStore.clearAndStoreOrderList(rpcGetOrderListRsp.order);
             } else {
                 console.error(`获取委托列表完成,请求ID:${rpcReqId},未知的请求状态`);
                 toast(`获取委托列表完成,请求ID:${rpcReqId},未知的请求状态`, { type: "error", autoClose: false })
@@ -297,7 +297,7 @@ class RpcClientRspHandler {
                 }
                 const tradeListLength = rpcGetTradeListRsp.trade.length
                 console.log(`获取成交列表完成,请求ID:${rpcReqId},共计${tradeListLength}条数据`);
-                tradeTradeStore.storeTradeList(rpcGetTradeListRsp.trade);
+                tradeTradeStore.clearAndStoreTradeList(rpcGetTradeListRsp.trade);
             } else {
                 console.error(`获取成交列表完成,请求ID:${rpcReqId},未知的请求状态`);
                 toast(`获取成交列表完成,请求ID:${rpcReqId},未知的请求状态`, { type: "error", autoClose: false })
@@ -325,7 +325,7 @@ class RpcClientRspHandler {
                 }
                 const tickListLength = rpcGetTickListRsp.tick.length
                 console.log(`获取Tick列表完成,请求ID:${rpcReqId},共计${tickListLength}条数据`);
-                tradeTickStore.storeTickList(rpcGetTickListRsp.tick);
+                tradeTickStore.clearAndStoreTickList(rpcGetTickListRsp.tick);
             } else {
                 console.error(`获取Tick列表完成,请求ID:${rpcReqId},未知的请求状态`);
                 toast(`获取Tick列表完成,请求ID:${rpcReqId},未知的请求状态`, { type: "error", autoClose: false })

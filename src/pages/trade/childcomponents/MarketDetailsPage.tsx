@@ -6,6 +6,9 @@ import { FontSizes } from 'office-ui-fabric-react/lib/Styling';
 import { getNumberOfDecimalDigits, numberFormat, checkEffectiveNumber, timestampFormat } from '../../../utils';
 import { TooltipHost, TooltipDelay, DirectionalHint } from 'office-ui-fabric-react/lib/Tooltip';
 import { isNumber } from 'util';
+import { xyz } from "../../../node/pb/pb";
+
+const {ProductTypeEnum, ExchangeEnum, CurrencyEnum} = xyz.redtorch.pb
 
 
 
@@ -390,10 +393,10 @@ export class MarketDetailsPage extends React.Component<any> {
                                                                     <li><span style={tooltipLabelStyls}>合约代码:</span><span>{selectedContract.symbol}</span></li>
                                                                     <li><span style={tooltipLabelStyls}>简称:</span><span>{selectedContract.shortName}</span></li>
                                                                     <li><span style={tooltipLabelStyls}>完整名称:</span><span>{selectedContract.fullName}</span></li>
-                                                                    <li><span style={tooltipLabelStyls}>交易所:</span><span>{selectedContract.exchange}</span></li>
-                                                                    <li><span style={tooltipLabelStyls}>产品类型:</span><span>{selectedContract.productType}</span></li>
+                                                                    <li><span style={tooltipLabelStyls}>交易所:</span><span>{ExchangeEnum[selectedContract.exchange]}</span></li>
+                                                                    <li><span style={tooltipLabelStyls}>产品类型:</span><span>{ProductTypeEnum[selectedContract.productType]}</span></li>
                                                                     <li><span style={tooltipLabelStyls}>第三方ID:</span><span>{selectedContract.thirdPartyId}</span></li>
-                                                                    <li><span style={tooltipLabelStyls}>货币:</span><span>{selectedContract.currency}</span></li>
+                                                                    <li><span style={tooltipLabelStyls}>货币:</span><span>{CurrencyEnum[selectedContract.currency]}</span></li>
                                                                     <li><span style={tooltipLabelStyls}>合约乘数:</span><span>{selectedContract.multiplier}</span></li>
                                                                     <li><span style={tooltipLabelStyls}>最小变动价位:</span><span>{selectedContract.priceTick}</span></li>
                                                                     <li><span style={tooltipLabelStyls}>最后交易日或合约月:</span><span>{selectedContract.lastTradeDateOrContractMonth}</span></li>

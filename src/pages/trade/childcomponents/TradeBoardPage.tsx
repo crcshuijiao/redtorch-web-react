@@ -406,12 +406,12 @@ export class TradeBoardPage extends React.Component<any> {
                                         defaultSelectedKey={tradeActionStore.autoFillPriceType}
                                         options={
                                             [
-                                                { key: 'MANUAL', text: '手动' },
                                                 { key: 'LAST', text: '最新' },
-                                                { key: 'BID1', text: '买一' },
-                                                { key: 'ASK1', text: '卖一' },
                                                 { key: 'UPPER_LIMIT', text: '涨停' },
+                                                { key: 'ASK1', text: '卖一' },
+                                                { key: 'BID1', text: '买一' },
                                                 { key: 'LOWER_LIMIT', text: '跌停' },
+                                                { key: 'MANUAL', text: '手动' },
                                             ]
                                         }
                                         onChange={(event: any, option?: IDropdownOption, index?: number, value?: string) => {

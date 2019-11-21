@@ -99,7 +99,7 @@ class WebSocketClientHandler {
 
     onclose = (e: CloseEvent) => {
         this.connectStatus = WebSocketClientHandler.STATUS_DISCONNECTED;
-        toast.warn(`WebSocket连接已关闭,代码:${e.code},原因:${e.reason}`)
+        toast.error(`WebSocket连接已关闭,代码:${e.code},原因:${e.reason}`)
         if (this.ws) {
             try {
                 this.ws.close()
@@ -120,6 +120,10 @@ class WebSocketClientHandler {
         const that = this;
         if (e.code === 1000 && e.reason === "验证登录信息失败!") {
             console.log("WebSocket连接已关闭,验证登录信息失败!不再重连!")
+            this.authFailedState = true;
+        }else if (e.code === 1000 && e.reason === "节点冲突!") {
+            console.log("WebSocket连接已关闭,节点冲突!不再重连!")
+            toast.error("WebSocket连接已关闭,节点冲突!不再重连!")
             this.authFailedState = true;
         } else {
             if (this.connectRetry) {
